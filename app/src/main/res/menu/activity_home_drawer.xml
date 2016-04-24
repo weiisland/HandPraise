@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/info"
+
+            android:title="主页" />
+        <item
+            android:id="@+id/nav_stream"
+            android:icon="@drawable/stream_dome"
+            android:title="流水" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/setting"
+            android:title="设置" />
+
+    </group>
+
+
+</menu>

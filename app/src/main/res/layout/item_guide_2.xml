@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ll_item_splash_2"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/splash"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="当前时间:"
+        android:textSize="40sp"
+        android:gravity="center_horizontal"
+        android:textColor="#000000"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/tv_guide2_currentDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        android:text="2016年4月17日"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="当前总资产:"
+        android:textSize="40sp"
+        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/et_guide2_current_property"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:gravity="center"
+        android:hint="单位：元"
+        android:textColor="#000000"
+        android:layout_margin="16dp"/>
+
+
+    <Button
+        android:id="@+id/bt_item_guide2_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="跳过设置"/>
+
+
+</LinearLayout>

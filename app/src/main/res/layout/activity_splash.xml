@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_splash"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="手 赞"
+        android:textSize="40sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="200dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="不积跬步，无以至千里"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+
+
+</LinearLayout>

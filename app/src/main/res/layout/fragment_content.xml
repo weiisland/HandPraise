@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+              android:orientation="vertical"
+              android:background="@drawable/bluesky"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:context=".ui.MainActivity"
+                tools:showIn="@layout/app_bar_home">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="您的目标"
+        android:layout_gravity="center"/>
+
+
+    <TextSwitcher
+        android:id="@+id/ts_main_textChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:inAnimation="@android:anim/slide_in_left"
+        android:outAnimation="@android:anim/slide_out_right" >
+
+
+    </TextSwitcher>
+
+    <TextView
+        android:id="@+id/tv_main_remain_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="365天"
+        android:textSize="50sp"/>
+
+
+
+    <TextView
+        android:id="@+id/tv_main_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="当前进度："
+        />
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/number_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="@style/NumberProgressBar_Relax_Blue_custom"/>
+
+
+
+        <TextView
+            android:id="@+id/tv_main_init_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="初始资产:"
+            />
+
+
+
+        <TextView
+            android:id="@+id/tv_random_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前资产："/>
+
+        <TextView
+            android:id="@+id/tv_random_money_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收入："/>
+
+        <TextView
+            android:id="@+id/tv_random_money_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支出："/>
+
+
+
+</LinearLayout>

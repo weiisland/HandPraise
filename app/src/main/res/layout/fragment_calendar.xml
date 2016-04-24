@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginLeft="@dimen/activity_horizontal_margin"
+              android:layout_marginRight="@dimen/activity_horizontal_margin"
+              android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
+        android:layout_gravity="center"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="@color/toolbar"
+        />
+
+    <com.rey.material.widget.Button
+        android:id="@+id/bt_calendar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="支出：100元；收入：50元"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"
+        android:text="点击查看详情"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+
+    </ScrollView>
+
+</LinearLayout>

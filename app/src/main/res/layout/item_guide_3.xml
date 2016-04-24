@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ll_item_splash_3"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/splash"
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="截止时间:"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"/>
+
+    <DatePicker
+        android:id="@+id/tp_guide3_chooseDay"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:datePickerMode="spinner"
+        android:calendarTextColor="#000000"
+        android:calendarViewShown="false"></DatePicker>
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="目标总资产:"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"/>
+
+    <EditText
+        android:id="@+id/et_guide3_target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="单位：元"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:textColor="#000000"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="达到目标后，要给予自己什么奖励呢:"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"/>
+
+    <EditText
+        android:id="@+id/et_guide3_what_want"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="实现人生巅峰，迎娶白富美，O(∩_∩)O~"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:inputType="text"
+        android:layout_margin="5dp"/>
+
+    <Button
+        android:id="@+id/bt_guide3_start_exp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:layout_marginBottom="55dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始积累"
+        android:textSize="20sp"/>
+
+
+
+</LinearLayout>
