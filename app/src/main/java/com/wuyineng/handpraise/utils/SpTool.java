@@ -33,16 +33,16 @@ public class SpTool {
         return sp.getInt(key, value);
     }
 
-    public static void putLong(Context context, String key, long value){
+    public static void putFloat(Context context, String key, float value){
         SharedPreferences sp = context.getSharedPreferences(MyConstants.INITIAL_PERSONAL_DATA, Context.MODE_PRIVATE);
-        sp.edit().putLong(key, value).commit();
+        sp.edit().putFloat(key, value).commit();
 
     }
 
-    public static long getLong(Context context, String key, long value){
+    public static float getFloat(Context context, String key, float value){
         SharedPreferences sp = context.getSharedPreferences(MyConstants.INITIAL_PERSONAL_DATA, Context.MODE_PRIVATE);
 
-        return sp.getLong(key, value);
+        return sp.getFloat(key, value);
     }
 
     public static void putString(Context context, String key, String value){

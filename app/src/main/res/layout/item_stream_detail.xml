@@ -30,9 +30,17 @@
             android:clickable="true"
             android:layout_centerInParent="true"
             android:layout_toRightOf="@+id/ib_back"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <com.rey.material.widget.ImageButton
+            android:id="@+id/ib_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/background"
+            android:src="@drawable/check"/>
 
     </RelativeLayout>
 
@@ -56,9 +64,7 @@
         <EditText
             android:id="@+id/et_stream_income"
             android:layout_width="0dp"
-
             android:gravity="center"
-
             android:layout_height="wrap_content"
             android:layout_weight="2"/>
 
@@ -107,7 +113,7 @@
             android:text="备注:"/>
 
         <EditText
-            android:id="@+id/et_stream_remark"
+            android:id="@+id/et_stream_comment"
             android:layout_width="match_parent"
             android:inputType="text"
             android:layout_height="wrap_content"

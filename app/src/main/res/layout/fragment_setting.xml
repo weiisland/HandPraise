@@ -200,35 +200,40 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_marginTop="15dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_setting_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="分享给好友O(∩_∩)O~"/>
-
-        <TextView
+        <LinearLayout
             android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="给个评价咯，作者会努力修正bug的(ง •̀_•́)ง"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="联系作者(ฅ´ω`ฅ)"/>
+            <TextView
+                android:id="@+id/tv_setting_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="分享给好友O(∩_∩)O~"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="给个评价咯，作者会努力修正bug的(ง •̀_•́)ง"/>
 
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="联系作者(ฅ´ω`ฅ)"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

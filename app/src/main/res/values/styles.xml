@@ -37,7 +37,7 @@
         <item name="progress">50</item>
         <item name="progress_unreached_color">#CCCCCC</item>
         <item name="progress_reached_color">#6DBCDB</item>
-        <item name="progress_text_size">10sp</item>
+        <item name="progress_text_size">15sp</item>
         <item name="progress_text_color">#6DBCDB</item>
         <item name="progress_reached_bar_height">5.5dp</item>
         <item name="progress_unreached_bar_height">2.75dp</item>

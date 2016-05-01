@@ -7,4 +7,6 @@
     <color name="toolbar">#0077D9</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <drawable name="pressed">#ff0000</drawable>
+    <drawable name="unpressed">#CCCCCC</drawable>
 </resources>

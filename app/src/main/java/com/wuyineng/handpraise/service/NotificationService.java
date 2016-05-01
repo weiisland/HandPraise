@@ -48,10 +48,6 @@ public class NotificationService extends Service{
 
 
 
-
-
-
-
         super.onCreate();
     }
 
@@ -68,11 +64,15 @@ public class NotificationService extends Service{
 
         PendingIntent pi = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_CANCEL_CURRENT);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon1);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_hand);
+
+        float progress = SpTool.getFloat(getApplicationContext(), MyConstants.CURRENT_PROGRESS, 0f);
+//        转化为百分比
+        int mProgress = (int) (progress * 100);
 
         Notification mBuilder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.icon1)
-                .setTicker("手赞：现在进度是——")
+                .setSmallIcon(R.drawable.ic_hand)
+                .setTicker("手赞：现在进度是——" + mProgress + "%")
                 .setContentTitle("该记账咯！")
                 .setContentText("今天是否距离目标更进一步呢？")
                 .setLargeIcon(bitmap)

@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import com.wuyineng.handpraise.R;
 import com.wuyineng.handpraise.ui.MainActivity;
+
+import java.util.List;
 
 /**
  * Created by wuyineng on 2016/4/24.
@@ -71,7 +74,6 @@ public class KeyboardUtil {
             int start = ed.getSelectionStart();
 
 
-
             if (primaryCode == Keyboard.KEYCODE_DELETE) {// back
                 if (editable != null && editable.length() > 0) {
                     if (start > 0) {
@@ -80,8 +82,10 @@ public class KeyboardUtil {
                 }
             } else if (primaryCode == 5777) {// OK
 
-                    Intent intent = new Intent(mContext.getApplicationContext(), MainActivity.class);
-                    mContext.startActivity(intent);
+
+/*
+                Intent intent = new Intent(mContext.getApplicationContext(), MainActivity.class);
+                mContext.startActivity(intent);*/
 
 
             } else if (primaryCode == 5789) {// 清空
@@ -110,6 +114,12 @@ public class KeyboardUtil {
         if (visibility == View.GONE || visibility == View.INVISIBLE) {
             keyboardView.setVisibility(View.VISIBLE);
         }
+    }
+
+    public List<Keyboard.Key> getKey(){
+        List<Keyboard.Key> keys = k.getKeys();
+
+        return keys;
     }
 }
 

@@ -25,10 +25,12 @@ import com.rey.material.widget.Button;
 import com.rey.material.widget.Switch;
 import com.wuyineng.handpraise.R;
 import com.wuyineng.handpraise.service.NotificationService;
+import com.wuyineng.handpraise.utils.DateUtil;
 import com.wuyineng.handpraise.utils.MyConstants;
 import com.wuyineng.handpraise.utils.SpTool;
 import com.wuyineng.handpraise.utils.WindowToken;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -373,15 +375,26 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
                         mYear = year;
                         mMonth = monthOfYear;
                         mDay = dayOfMonth;
-//                      保存时间
-                        SpTool.putInt(getActivity(), MyConstants.INITIAL_YEAR, mYear);
-                        SpTool.putInt(getActivity(), MyConstants.INITIAL_MONTH, mMonth);
-                        SpTool.putInt(getActivity(), MyConstants.INITIAL_DAY, mDay);
-                        //更新EditText控件日期 小于10加0
-                        bt_target_day.setText(new StringBuilder().append(mYear).append("年")
-                                .append((mMonth + 1) < 10 ? "0" + (mMonth + 1) : (mMonth + 1))
-                                .append("月")
-                                .append((mDay < 10) ? "0" + mDay : mDay).append("日"));
+
+                        try {
+                            if (DateUtil.compareCurrent(year,monthOfYear,dayOfMonth)){
+                                //                      保存时间
+                                SpTool.putInt(getActivity(), MyConstants.INITIAL_YEAR, mYear);
+                                SpTool.putInt(getActivity(), MyConstants.INITIAL_MONTH, mMonth);
+                                SpTool.putInt(getActivity(), MyConstants.INITIAL_DAY, mDay);
+                                //更新EditText控件日期 小于10加0
+                                bt_target_day.setText(new StringBuilder().append(mYear).append("年")
+                                        .append((mMonth + 1) < 10 ? "0" + (mMonth + 1) : (mMonth + 1))
+                                        .append("月")
+                                        .append((mDay < 10) ? "0" + mDay : mDay).append("日"));
+                            }else {
+                                Toast.makeText(mMainActivity,"选择的时间必须大于当前时间",Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH) ).show();

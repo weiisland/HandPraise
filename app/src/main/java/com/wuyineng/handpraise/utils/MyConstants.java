@@ -25,4 +25,10 @@ public interface MyConstants {
 
     String NOTIFY_HOUR = "hour";
     String NOTIFY_MIMUTE = "minute";
+
+    String STREAM_YEAR = "stream_year";
+    String STREAM_MONTH = "stream_month";
+    String STREAM_DAY = "stream_day";
+
+    String CURRENT_PROGRESS = "progress";
 }

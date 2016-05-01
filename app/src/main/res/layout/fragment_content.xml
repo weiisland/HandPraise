@@ -8,16 +8,16 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
-              android:orientation="vertical"
-              android:background="@drawable/bluesky"
+                android:orientation="vertical"
+                android:background="@drawable/splash"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context=".ui.MainActivity"
-                tools:showIn="@layout/app_bar_home">
+                tools:context=".ui.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="您的目标"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"/>
 
 
@@ -25,11 +25,8 @@
         android:id="@+id/ts_main_textChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:inAnimation="@android:anim/slide_in_left"
         android:outAnimation="@android:anim/slide_out_right" >
 
@@ -41,9 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:text="365天"
-        android:textSize="50sp"/>
+        android:textSize="60sp"/>
 
 
 
@@ -51,7 +48,7 @@
         android:id="@+id/tv_main_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
         android:text="当前进度："
         />
 
@@ -75,19 +72,19 @@
 
 
         <TextView
-            android:id="@+id/tv_random_money"
+            android:id="@+id/tv_content_current_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="当前资产："/>
 
         <TextView
-            android:id="@+id/tv_random_money_income"
+            android:id="@+id/tv_content_money_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收入："/>
 
         <TextView
-            android:id="@+id/tv_random_money_pay"
+            android:id="@+id/tv_content_money_pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="支出："/>
