@@ -48,4 +48,10 @@ public abstract class BaseFragment extends Fragment {
     protected void initData() {
 
     }
+
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+    }
 }

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
@@ -28,6 +29,7 @@ import com.wuyineng.handpraise.dao.StreamDao;
 import com.wuyineng.handpraise.domain.Stream;
 import com.wuyineng.handpraise.ui.MainActivity;
 import com.wuyineng.handpraise.ui.StreamActivity;
+import com.wuyineng.handpraise.utils.DateUtil;
 import com.wuyineng.handpraise.utils.MyConstants;
 import com.wuyineng.handpraise.utils.SpTool;
 
@@ -70,6 +72,7 @@ public class ContentFragment extends BaseFragment {
     
     private MainActivity mMainActivity;
     private StreamDao mDao;
+    private long mCurrentTime;
 
     @Override
     public void onAttach(Context context) {
@@ -84,9 +87,15 @@ public class ContentFragment extends BaseFragment {
         ViewUtils.inject(this, view);
         setHasOptionsMenu(true);
 
+        mCurrentTime = System.currentTimeMillis();
+
         mDao = new StreamDao(mMainActivity);
 
-        showData();
+        try {
+            showData();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         return view;
@@ -95,7 +104,7 @@ public class ContentFragment extends BaseFragment {
     /**
      * 显示数据
      */
-    private void showData() {
+    private void showData() throws ParseException {
         String tar_money = SpTool.getString(mMainActivity, MyConstants.INITIAL_TARGET_MONEY, "");
         String cur_money = SpTool.getString(mMainActivity,MyConstants.INITIAL_CURRENT_MONEY,"");
 
@@ -123,20 +132,34 @@ public class ContentFragment extends BaseFragment {
             }
 
         }
-
+//      设置进度条数据
         double remain =current + (TotalIncome - TotalPay);
         mNumPB.setMax((int)target);
 
-        if (remain <= 0){
+        if (remain <= 0){//如果剩余的资产为负资产，则令进度条为零
             mNumPB.setProgress(0);
-        }else {
+            //如果当前时间小于目标时间且当前资产小于总资产
+        }else if (mCurrentTime < DateUtil.getTargetDayToTime(mMainActivity) && remain < target){
             mNumPB.setProgress((int)remain);
+            //如果当前时间小于目标时间且当前资产大于总资产
+        }else if (mCurrentTime < DateUtil.getTargetDayToTime(mMainActivity) && remain > target){
+            mNumPB.setProgress((int) target);
+            Toast.makeText(mMainActivity,"恭喜目标达成 ╭(●｀∀´●)╯╰(●’◡’●)╮\n 请设置新的目标", Toast.LENGTH_SHORT).show();
+            //如果当前时间大于目标时间且当前资产小于总资产
+        }else if (mCurrentTime > DateUtil.getTargetDayToTime(mMainActivity) && remain < target){
+            mNumPB.setProgress((int)remain);
+            Toast.makeText(mMainActivity,"加油 (ง •̀_•́)ง (*•̀ㅂ•́)و\n 请重新设定日期", Toast.LENGTH_SHORT).show();
+            //如果当前时间大于目标时间且当前资产大于总资产
+        }else {
+            mNumPB.setProgress((int) target);
+            Toast.makeText(mMainActivity,"请重新设定目标时间和资产", Toast.LENGTH_SHORT).show();
         }
 
         float progress = (float) (remain/target);
 
         Log.d("Progress", progress + "");
 
+        //保存百分比
         SpTool.putFloat(mMainActivity, MyConstants.CURRENT_PROGRESS, progress);
 
 

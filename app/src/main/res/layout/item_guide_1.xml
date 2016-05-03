@@ -18,21 +18,22 @@
         android:layout_marginTop="100dp"/>
 
     <TextView
+        android:layout_marginTop="15dp"
         style="@style/item_guide_text_style"
-        android:text="不关注琐碎的细枝末节"/>
+        android:text="省去琐碎的细枝末节"/>
 
 
     <TextView
         style="@style/item_guide_text_style"
-        android:text="只在乎总的资产累计"/>
+        android:text="关注资产累计"/>
 
     <TextView
         style="@style/item_guide_text_style"
-        android:text="以及个人想到达的资产目标"/>
+        android:text="设定想达到的资产目标"/>
 
     <TextView
         style="@style/item_guide_text_style"
-        android:text="简化你的记账压力"/>
+        android:text="简化您的记账压力"/>
 
 
 </LinearLayout>

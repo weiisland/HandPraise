@@ -184,10 +184,6 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
             }
         });
 //      设置每日提醒时间
-        /**
-         * TODO 有待完善 设置每日提醒时间
-         *
-         * */
         bt_notify_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

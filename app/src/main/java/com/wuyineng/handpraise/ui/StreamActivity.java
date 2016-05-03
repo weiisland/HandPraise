@@ -108,6 +108,7 @@ public class StreamActivity extends BaseActivity implements View.OnTouchListener
             public void onClick(View v) {
                 Intent intent = new Intent(StreamActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

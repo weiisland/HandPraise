@@ -1,5 +1,6 @@
 package com.wuyineng.handpraise.guidefragment;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -122,6 +123,8 @@ public class GuideFragmentActivity extends FragmentActivity {
     }
 
     private void initView() {
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(R.layout.activity_guide);
 

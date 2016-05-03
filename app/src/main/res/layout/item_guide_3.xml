@@ -7,13 +7,9 @@
               android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="截止时间:"
-        android:textSize="25sp"
-        android:textColor="#000000"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="40dp"/>
+        style="@style/item_guide_text_style"
+        android:text="截止时间"
+        android:layout_marginTop="100dp"/>
 
     <DatePicker
         android:id="@+id/tp_guide3_chooseDay"
@@ -25,12 +21,8 @@
         android:calendarViewShown="false"></DatePicker>
 
     <TextView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="目标总资产:"
-        android:textSize="25sp"
-        android:textColor="#000000"
+        style="@style/item_guide_text_style"
+        android:text="目标总资产"
         android:gravity="center_horizontal"
         android:layout_marginTop="5dp"/>
 
@@ -45,12 +37,9 @@
         android:layout_margin="5dp"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="达到目标后，要给予自己什么奖励呢:"
+        style="@style/item_guide_text_style"
+        android:text="达到目标后，要给予自己什么奖励呢"
         android:textSize="20sp"
-        android:textColor="#000000"
-        android:gravity="center_horizontal"
         android:layout_marginTop="5dp"/>
 
     <EditText
@@ -65,7 +54,6 @@
 
     <Button
         android:id="@+id/bt_guide3_start_exp"
-        android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
         android:padding="10dp"
         android:layout_marginBottom="55dip"
@@ -73,7 +61,5 @@
         android:layout_height="wrap_content"
         android:text="开始积累"
         android:textSize="20sp"/>
-
-
 
 </LinearLayout>

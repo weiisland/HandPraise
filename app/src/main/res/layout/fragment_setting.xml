@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="初始资产(元):"/>
+            android:text="初始资产(元)"/>
 
         <EditText
             android:id="@+id/et_setting_current_property"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="目标资产(元):"/>
+            android:text="目标资产(元)"/>
 
         <EditText
             android:id="@+id/et_setting_target_property"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="目标完成日期:"/>
+            android:text="目标完成日期"/>
 
         <com.rey.material.widget.Button
             android:id="@+id/bt_setting_target_day"
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="实现后做些什么:"/>
+            android:text="实现后做些什么"/>
 
         <EditText
             android:id="@+id/et_setting_want_todo"
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="16sp"
-            android:text="选择提醒时间:"/>
+            android:text="选择提醒时间"/>
 
         <com.rey.material.widget.Button
             android:id="@+id/bt_setting_notify_time"
@@ -167,6 +167,29 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             app:rd_enable="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="设定报警限额"/>
+
+        <EditText
+            android:id="@+id/et_setting_limit_property"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
 
     </LinearLayout>
 
@@ -188,7 +211,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_centerVertical="true"
-            android:text="当前版本:"/>
+            android:text="当前版本"/>
 
         <TextView
             android:layout_alignParentRight="true"
@@ -202,7 +225,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_marginTop="15dp"
@@ -234,6 +258,7 @@
         </LinearLayout>
 
     </ScrollView>
+
 
 
 </LinearLayout>

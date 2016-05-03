@@ -11,9 +11,11 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.wuyineng.handpraise.ui.MainActivity;
 import com.wuyineng.handpraise.R;
+import com.wuyineng.handpraise.utils.DateUtil;
 import com.wuyineng.handpraise.utils.MyConstants;
 import com.wuyineng.handpraise.utils.SpTool;
 
+import java.text.ParseException;
 import java.util.Calendar;
 
 /**
@@ -58,32 +60,25 @@ public class Guide3Fragment extends BaseGuideFragment{
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                if (year >= Nyear && monthOfYear >= Nmonth && dayOfMonth >= Nday) {
+                try {
+                    if (DateUtil.compareCurrent(year,monthOfYear,dayOfMonth)) {
 
-                    mYear = year;
-                    mMonth = monthOfYear;
-                    mDay = dayOfMonth;
+                        mYear = year;
+                        mMonth = monthOfYear;
+                        mDay = dayOfMonth;
 
-                    SpTool.putInt(getActivity(), MyConstants.INITIAL_YEAR, mYear);
-                    SpTool.putInt(getActivity(), MyConstants.INITIAL_MONTH, mMonth);
-                    SpTool.putInt(getActivity(), MyConstants.INITIAL_DAY, mDay);
-                } else {
-                    Toast.makeText(getActivity(), "日期不符合要求", Toast.LENGTH_SHORT).show();
+                        SpTool.putInt(getActivity(), MyConstants.INITIAL_YEAR, mYear);
+                        SpTool.putInt(getActivity(), MyConstants.INITIAL_MONTH, mMonth);
+                        SpTool.putInt(getActivity(), MyConstants.INITIAL_DAY, mDay);
+                    } else {
+                        Toast.makeText(getActivity(), "日期不符合要求", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
 
             }
         });
-
-
-/*        if (TextUtils.isEmpty(targetMoney)){
-
-            Toast.makeText(getActivity(), "目标资产而不能为空", Toast.LENGTH_SHORT).show();
-        }else {
-            SpTool.putString(getActivity(),MyConstants.INITIAL_TARGET_MONEY, targetMoney);
-        }*/
-
-
-
 
         super.initData();
     }
@@ -94,6 +89,15 @@ public class Guide3Fragment extends BaseGuideFragment{
         mStartEX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                try {
+                    if (DateUtil.getTargetDayToTime(getActivity()) < System.currentTimeMillis()){
+                        Toast.makeText(getActivity(),"请设定目标时间", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 String targetMoney = mTargetProperty.getText().toString().trim();
                 SpTool.putString(getActivity(), MyConstants.INITIAL_TARGET_MONEY, targetMoney);
