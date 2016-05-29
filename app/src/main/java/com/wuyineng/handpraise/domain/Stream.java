@@ -1,6 +1,5 @@
 package com.wuyineng.handpraise.domain;
 
-import java.util.Date;
 
 /**
  * Created by wuyineng on 2016/4/26.

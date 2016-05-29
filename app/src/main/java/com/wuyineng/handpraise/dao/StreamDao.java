@@ -7,13 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.wuyineng.handpraise.db.StreamDB;
 import com.wuyineng.handpraise.domain.Stream;
-import com.wuyineng.handpraise.utils.MyConstants;
 import com.wuyineng.handpraise.utils.StreamTable;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,11 +26,6 @@ public class StreamDao {
         mStreamDB= new StreamDB(context);
     }
 
-    /**
-     * @param c
-     * @return
-     * 返回habitDao
-     */
     public static StreamDao get(Context c){
         if (mDao == null){
             mDao = new StreamDao((c.getApplicationContext()));//application context是针对应用的全局性Context
@@ -69,9 +60,6 @@ public class StreamDao {
         return data;
     }
 
-
-
-
     /**
      * @return
      * 返回所有的数据
@@ -90,14 +78,6 @@ public class StreamDao {
             bean.setPay(cursor.getString(2));
             bean.setComment(cursor.getString(3));
             bean.setDate(cursor.getLong(4));
-/*            //通过cursor传入列名返回对应的列数，最后转为String类型，
-            String dateTime = cursor.getString(cursor.getColumnIndex(StreamTable.RECORD_TIME));
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                bean.setDate(sdf.parse(dateTime).getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }*/
             data.add(bean);
         }
         cursor.close();

@@ -12,20 +12,25 @@ import com.wuyineng.handpraise.guidefragment.GuideFragmentActivity;
 import com.wuyineng.handpraise.utils.MyConstants;
 import com.wuyineng.handpraise.utils.SpTool;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by wuyineng on 2016/4/17.
- * 描述：
+ * 描述：splash界面
  */
 public class SplashActivity extends Activity {
+    @Bind(R.id.ll_splash)
+    LinearLayout mLl_mainView;
 
-    private LinearLayout mLl_mainView;
     private AlphaAnimation mAa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
 
-        initView();
+        ButterKnife.bind(this);
 
         initAnimation();
 
@@ -54,7 +59,6 @@ public class SplashActivity extends Activity {
 
                 }
                 finish();
-
             }
 
             @Override
@@ -73,13 +77,5 @@ public class SplashActivity extends Activity {
         mLl_mainView.startAnimation(mAa);
 
     }
-
-    private void initView() {
-        setContentView(R.layout.activity_splash);
-
-        mLl_mainView = (LinearLayout) findViewById(R.id.ll_splash);
-
-    }
-
 
 }

@@ -51,9 +51,7 @@ public abstract class BaseGuideFragment extends Fragment {
         }
     }
 
-    protected void onInVisible() {
-
-    }
+    protected void onInVisible() {}
 
     protected void onVisible() {
         initData();
@@ -71,9 +69,7 @@ public abstract class BaseGuideFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    protected void initData() {
-
-    }
+    protected void initData() {}
 
     protected void initEvent(){}
 }

@@ -18,6 +18,9 @@ import com.wuyineng.handpraise.utils.DensityUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by wuyineng on 2016/4/18.
  * 描述：引导界面
@@ -25,16 +28,20 @@ import java.util.List;
 public class GuideFragmentActivity extends FragmentActivity {
 
     private List<Fragment> mFragments;//fragment的容器
-    private ViewPager mVp_guides;
-    private LinearLayout mLl_points;//一个线性布局用来装载底部的圆点
-    private View mV_redPoints;
+    @Bind(R.id.vp_guide_pages)
+    ViewPager mVp_guides;
+    @Bind(R.id.ll_guide_points)
+    LinearLayout mLl_points;//一个线性布局用来装载底部的圆点
+    @Bind(R.id.v_guide_redpoint)
+    View mV_redPoints;
     private int mDisPoints;//圆点之间的距离
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initView();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(R.layout.activity_guide);
+        ButterKnife.bind(this);
 
         initData();
 
@@ -64,8 +71,6 @@ public class GuideFragmentActivity extends FragmentActivity {
                 layoutParams.leftMargin = Math.round(leftMargin);//对float类型四舍五入
 
                 mV_redPoints.setLayoutParams(layoutParams);
-
-
             }
 
             @Override
@@ -110,30 +115,9 @@ public class GuideFragmentActivity extends FragmentActivity {
 
         }
 
-
-
-
-/*        mFragments.add(new Guide1Fragment());
-        mFragments.add(new Guide2Fragment());
-        mFragments.add(new Guide3Fragment());*/
-
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), mFragments);
 
         mVp_guides.setAdapter(adapter);
-    }
-
-    private void initView() {
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        setContentView(R.layout.activity_guide);
-
-        mVp_guides = (ViewPager) findViewById(R.id.vp_guide_pages);
-
-        mLl_points = (LinearLayout) findViewById(R.id.ll_guide_points);
-
-        mV_redPoints = findViewById(R.id.v_guide_redpoint);
-
     }
 
     private class MyPagerAdapter extends FragmentStatePagerAdapter{

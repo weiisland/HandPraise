@@ -1,60 +1,41 @@
 package com.wuyineng.handpraise.ui;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewSwitcher;
 
-import com.daimajia.numberprogressbar.NumberProgressBar;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.rey.material.util.ThemeUtil;
 import com.wuyineng.handpraise.R;
 import com.wuyineng.handpraise.ui.fragment.CalendarViewFragment;
 import com.wuyineng.handpraise.ui.fragment.ContentFragment;
 import com.wuyineng.handpraise.ui.fragment.SettingFragment;
-import com.wuyineng.handpraise.utils.MyConstants;
-import com.wuyineng.handpraise.utils.SpTool;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
-    @ViewInject(R.id.toolbar)
-    private Toolbar mToolbar;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
 
-    @ViewInject(R.id.drawer_layout)
-    private DrawerLayout mDrawerLayout;
+    @Bind(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
 
-    @ViewInject(R.id.nav_view)
-    private NavigationView mNavigationView;
+    @Bind(R.id.nav_view)
+    NavigationView mNavigationView;
 
     private TextView tv_today;
-
-
     private ActionBarDrawerToggle mToggle;
-
-    private long exitTime;
-
-
 
     public void initData() {
         mToolbar.setBackgroundColor(Color.rgb(00, 119, 217));
@@ -66,15 +47,10 @@ public class MainActivity extends BaseActivity
         mDrawerLayout.addDrawerListener(mToggle);
 
         mToolbar.setTitle(R.string.main);
-
-
-
     }
 
     @Override
     protected void initEvent() {
-
-
         mNavigationView.setNavigationItemSelectedListener(this);
 
         super.initEvent();
@@ -82,7 +58,7 @@ public class MainActivity extends BaseActivity
 
     protected void initView() {
         setContentView(R.layout.activity_home);
-        ViewUtils.inject(this);
+        ButterKnife.bind(this);
 
         replaceFragment(R.id.fl_home_content, new ContentFragment());
 //      获取抽屉顶部的view
@@ -108,9 +84,6 @@ public class MainActivity extends BaseActivity
 //          如果抽屉一开始是打开的
             if (mDrawerLayout.isDrawerOpen(GravityCompat.START)){
                 mDrawerLayout.closeDrawer(GravityCompat.START);
-            }else if (System.currentTimeMillis() - exitTime > 2000){
-                Toast.makeText(getApplicationContext(),"再按一次退出",Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
             }else {
                 finish();
             }
@@ -118,11 +91,6 @@ public class MainActivity extends BaseActivity
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
-
-
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -136,15 +104,14 @@ public class MainActivity extends BaseActivity
             replaceFragment(R.id.fl_home_content, new ContentFragment());
         } else if (id == R.id.nav_stream) {
 
-            mToolbar.setTitle("流水日历");
+            mToolbar.setTitle(R.string.calendar);
             replaceFragment(R.id.fl_home_content,new CalendarViewFragment());
 
         } else if (id == R.id.nav_setting) {
 
-            mToolbar.setTitle("设置");
+            mToolbar.setTitle(R.string.setting);
 
             replaceFragment(R.id.fl_home_content, new SettingFragment());
-
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);

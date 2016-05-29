@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class StreamDB extends SQLiteOpenHelper {
 
-
     public StreamDB(Context context) {
         super(context, "stream.db", null, 1);
     }

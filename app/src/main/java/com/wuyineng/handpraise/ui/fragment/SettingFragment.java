@@ -19,8 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.rey.material.widget.Button;
 import com.rey.material.widget.Switch;
 import com.wuyineng.handpraise.R;
@@ -31,39 +29,32 @@ import com.wuyineng.handpraise.utils.SpTool;
 import com.wuyineng.handpraise.utils.WindowToken;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by wuyineng on 2016/4/21.
  * 描述：设置界面的fragment
  */
-public class SettingFragment extends BaseFragment implements TextWatcher{
+public class SettingFragment extends BaseFragment{
 
-    private static final int ALARMREPEAT = 0;
-    private static final int FINISH = 1;
-    @ViewInject(R.id.et_setting_current_property)
-    private EditText et_currentProperty;
-
-    @ViewInject(R.id.et_setting_target_property)
-    private EditText et_targetProperty;
-
-    @ViewInject(R.id.et_setting_want_todo)
-    private EditText et_want_todo;
-
-    @ViewInject(R.id.bt_setting_target_day)
-    private Button bt_target_day;
-
-    @ViewInject(R.id.switch_setting_notify)
-    private Switch switch_notify;
-
-    @ViewInject(R.id.bt_setting_notify_time)
-    private Button bt_notify_time;
-
-    @ViewInject(R.id.ll_setting_notify_time)
-    private LinearLayout ll_notify;
-
+    @Bind(R.id.et_setting_current_property)
+    EditText et_currentProperty;
+    @Bind(R.id.et_setting_target_property)
+    EditText et_targetProperty;
+    @Bind(R.id.et_setting_want_todo)
+    EditText et_want_todo;
+    @Bind(R.id.bt_setting_target_day)
+    Button bt_target_day;
+    @Bind(R.id.switch_setting_notify)
+    Switch switch_notify;
+    @Bind(R.id.bt_setting_notify_time)
+    Button bt_notify_time;
+    @Bind(R.id.ll_setting_notify_time)
+    LinearLayout ll_notify;
 
     private long currentTime;
     private int mYear;
@@ -74,17 +65,15 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
     private int mHour;
     private int mMinute;
     private AlarmManager mAm;
-    //private MyTimeTask task;
-
 
     @Override
     protected View initView() {
 
         View view = View.inflate(mMainActivity, R.layout.fragment_setting,null);
-        ViewUtils.inject(this, view);
+        ButterKnife.bind(this,view);
         setHasOptionsMenu(true);
 
-        if (SpTool.getBoolean(mMainActivity,MyConstants.IS_NOTIFY,true)){
+        if (SpTool.getBoolean(mMainActivity,MyConstants.IS_NOTIFY,false)){
             switch_notify.setChecked(true);
             ll_notify.setVisibility(View.VISIBLE);
             int hour = SpTool.getInt(mMainActivity,MyConstants.NOTIFY_HOUR,0);
@@ -101,10 +90,6 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
     @Override
     protected void initData() {
         currentTime = System.currentTimeMillis();
-
-        /*SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
-
-        bt_target_day.setText(sdf.format(currentTime));*/
 
         int year = SpTool.getInt(getActivity(), MyConstants.INITIAL_YEAR, mYear);
         int month = SpTool.getInt(getActivity(), MyConstants.INITIAL_MONTH, mMonth);
@@ -143,18 +128,6 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
             @Override
             public void onCheckedChanged(Switch view, boolean checked) {
                 if (checked) {
-//                    如果选择提醒就启动服务
-                    /*if (bt_notify_time.getVisibility() == View.VISIBLE
-                            && !TextUtils.isEmpty(bt_notify_time.getText().toString().trim())){
-
-                        try {
-                            startRepeatNotify();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }*/
-                    /*Intent intent = new Intent(mMainActivity, NotificationService.class);
-                    mMainActivity.startService(intent);*/
 //                    设置提醒时间可见
                     ll_notify.setVisibility(View.VISIBLE);
 
@@ -170,10 +143,6 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
                     mAm= (AlarmManager) mMainActivity.getSystemService(Context.ALARM_SERVICE);
 
                     mAm.cancel(pi);//不取消就会一直启动服务，就算是stopService也没办法
-
-                    //handler.obtainMessage(FINISH).sendToTarget();
-
-
 
 //                  不然就停止服务
                     Intent intent = new Intent(mMainActivity, NotificationService.class);
@@ -193,10 +162,6 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
                             public void onTimeSet(TimePicker view, int hour, int minute) {
                                 mHour = hour;
                                 mMinute = minute;
-                                /*if (switch_notify.isChecked()){
-
-                                    startRepeatNotify();
-                                }*/
 
                                 SpTool.putInt(mMainActivity, MyConstants.NOTIFY_HOUR, mHour);
                                 SpTool.putInt(mMainActivity, MyConstants.NOTIFY_MIMUTE, mMinute);
@@ -238,8 +203,6 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
 
                                 mAm.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, firstTime, 24 * 60 * 60 * 1000, pi);
 
-
-
                                 bt_notify_time.setText(new StringBuilder()
                                         .append(mHour < 10 ? "0" + mHour : mHour).append(":")
                                         .append(mMinute < 10 ? "0" + mMinute : mMinute));
@@ -249,121 +212,14 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
             }
         });
 
-
         super.initEvent();
     }
 
-    /**
-     * 设置每日通知提醒，如果这个方法是在switch_notify中执行，就不能通过改变时间来显示通知，因为switch_notify
-     * 改变状态在先，之后才是选择通知时间，逻辑的先后顺序有错，所以既然要改变时间，那么应该先设定时间，再启动服务
-     */
-/*    private void startRepeatNotify() throws ParseException {
-        Intent intent= new Intent(mMainActivity,NotificationService.class);
-
-        PendingIntent pi = PendingIntent.getService(mMainActivity, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        mAm = (AlarmManager) mMainActivity.getSystemService(Context.ALARM_SERVICE);
-
-        //mAm.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), mPi);
-
-        int mHour = SpTool.getInt(mMainActivity, MyConstants.NOTIFY_HOUR, 0);
-        int mMinute = SpTool.getInt(mMainActivity, MyConstants.NOTIFY_MIMUTE, 0);
-
-        long firstTime = SystemClock.elapsedRealtime();
-        long systemTime = System.currentTimeMillis();
-
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.setTimeInMillis(systemTime);
-       // calendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-        calendar.setTimeZone(TimeZone.getDefault());
-        calendar.set(Calendar.HOUR_OF_DAY, mHour);
-        calendar.set(Calendar.MINUTE, mMinute);
-        calendar.set(Calendar.SECOND,0);
-        calendar.set(Calendar.MILLISECOND,0);
-
-        long selectTime = calendar.getTimeInMillis();
-
-        if (systemTime > selectTime){
-            calendar.add(Calendar.DAY_OF_MONTH,1);
-            selectTime = calendar.getTimeInMillis();
-        }
-
-        long time = selectTime - systemTime;
-
-        firstTime += time;
-
-        //mAm.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, selectTime, DAY, pi);
-        //mAm.setRepeating(AlarmManager.RTC_WAKEUP, systemTime + 1000*10, DAY, pi);
-        //mAm.setRepeating(AlarmManager.RTC_WAKEUP, selectTime, AlarmManager.INTERVAL_DAY, pi);
-
-
-        int hour = SpTool.getInt(mMainActivity, MyConstants.NOTIFY_HOUR, 0);
-        int minute = SpTool.getInt(mMainActivity,MyConstants.NOTIFY_MIMUTE,0);
-//        string装换成时间戳
-*//*        SimpleDateFormat format =  new SimpleDateFormat("HH:mm:ss");
-        String time2 = hour + ":" + minute + ":" + "00";*//*
-
-
-        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        int year = SpTool.getInt(getActivity(), MyConstants.CURRENT_YEAR, 0);
-        int month = SpTool.getInt(getActivity(), MyConstants.CURRENT_MONTH, 0);
-        int day = SpTool.getInt(getActivity(), MyConstants.CURRENT_DAY, 0);
-        String time2 = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + "00";
-
-
-        //Date date = format.parse(time2);
-        Date date = format.parse("2016-03-22 21:52:00");
-
-
-
-        long interTime = date.getTime() - System.currentTimeMillis();
-        // System.out.print("Format To times:"+date.getTime());
-
-//      方法二使用定时器，因为TimerTask是一次性的，要重复使用，只能够先消除，再重新创建
-        if (timer != null){
-            if (task != null){
-                task.cancel();
-            }
-            MyTimeTask task = new MyTimeTask();
-            timer.schedule(task,1000,30*1000);//可以实现重复时间提醒，但这里一直有个bug，第二个延迟参数总是异常，若是数字没问题，但是用interTime就是不行
-        }
-
-    }
-
-    Timer timer = new Timer();
-    class MyTimeTask extends TimerTask{
-
-        @Override
-        public void run() {
-            handler.obtainMessage(ALARMREPEAT).sendToTarget();
-        }
-    }
-
-
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case ALARMREPEAT:
-                    Intent intent= new Intent(mMainActivity,NotificationService.class);
-                    mMainActivity.startService(intent);
-                    break;
-
-                case FINISH://停止服务要在这边停止
-                    Intent i = new Intent(mMainActivity, NotificationService.class);
-                    mMainActivity.stopService(i);
-                    break;
-            }
-            super.handleMessage(msg);
-        }
-    };*/
 
     /**
      * 选择目标时间
      */
     private void choseTargetDay() {
-
-
         new android.app.DatePickerDialog(mMainActivity,
                 new android.app.DatePickerDialog.OnDateSetListener() {
                     @Override
@@ -394,10 +250,6 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH) ).show();
-
-
-
-
     }
 
     @Override
@@ -436,31 +288,4 @@ public class SettingFragment extends BaseFragment implements TextWatcher{
         SpTool.putString(mMainActivity, MyConstants.INITIAL_WANT, et_want_todo.getText().toString().trim());
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        /**
-         * TODO:待添加功能，数字中间添加逗号
-         *
-         * */
-        if ((et_targetProperty.getText().length() % 3 == 0 && et_targetProperty.getText().length() > 3)
-                | (et_currentProperty.getText().length() % 3 == 0 && et_currentProperty.getText().length() > 3)){
-
-            int end = et_currentProperty.getSelectionEnd();
-
-            et_currentProperty.getText().insert(end-3, ",");
-
-        }
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-
-
-    }
 }

@@ -16,13 +16,10 @@ import com.wuyineng.handpraise.ui.SplashActivity;
 import com.wuyineng.handpraise.utils.MyConstants;
 import com.wuyineng.handpraise.utils.SpTool;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by wuyineng on 2016/4/23.
- * 描述：
+ * 描述：通知服务
  */
 public class NotificationService extends Service{
     @Nullable
@@ -33,21 +30,6 @@ public class NotificationService extends Service{
 
     @Override
     public void onCreate() {
-        /*int hour = SpTool.getInt(getApplicationContext(), MyConstants.NOTIFY_HOUR, 0);
-        int minute = SpTool.getInt(getApplicationContext(),MyConstants.NOTIFY_MIMUTE,0);
-//        string装换成时间戳
-        SimpleDateFormat format =  new SimpleDateFormat("HH:mm:ss");
-        String time = hour + ":" + minute + ":" + "00";
-        Date date = null;
-        try {
-            date = format.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
-       // System.out.print("Format To times:"+date.getTime());
-
-
-
         super.onCreate();
     }
 

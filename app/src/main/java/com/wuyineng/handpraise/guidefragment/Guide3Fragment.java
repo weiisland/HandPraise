@@ -18,24 +18,25 @@ import com.wuyineng.handpraise.utils.SpTool;
 import java.text.ParseException;
 import java.util.Calendar;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by wuyineng on 2016/4/18.
- * 描述：滚动的第一个界面
+ * 描述：滚动的一个界面
  */
 public class Guide3Fragment extends BaseGuideFragment{
+    @Bind(R.id.tp_guide3_chooseDay)
+    DatePicker mDatePicker;
 
+    @Bind(R.id.bt_guide3_start_exp)
+    Button mStartEX;
 
-    @ViewInject(R.id.tp_guide3_chooseDay)
-    private DatePicker mDatePicker;
+    @Bind(R.id.et_guide3_target)
+    EditText mTargetProperty;
 
-    @ViewInject(R.id.bt_guide3_start_exp)
-    private Button mStartEX;
-
-    @ViewInject(R.id.et_guide3_target)
-    private EditText mTargetProperty;
-
-    @ViewInject(R.id.et_guide3_what_want)
-    private EditText mEt_Want;
+    @Bind(R.id.et_guide3_what_want)
+    EditText mEt_Want;
 
     private int mYear;
     private int mMonth;
@@ -119,7 +120,7 @@ public class Guide3Fragment extends BaseGuideFragment{
     public View initView() {
 
         View root = View.inflate(mGuideFragmentActivity, R.layout.item_guide_3, null);
-        ViewUtils.inject(this,root);
+        ButterKnife.bind(this,root);
         isPrepared = true;//界面加载完毕
         return root;
     }

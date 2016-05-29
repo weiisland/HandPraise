@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="手 赞"
+        android:text="@string/splash_title"
         android:textSize="40sp"
         android:gravity="center_horizontal"
         android:layout_marginTop="200dp"/>
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="不积跬步，无以至千里"
+        android:text="@string/splash_content"
         android:textSize="20sp"
         android:gravity="center_horizontal"
         android:layout_marginTop="@dimen/activity_vertical_margin"/>

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">手赞</string>
     <string name="main">主页</string>
+    <string name="splash_title">手 赞</string>
+    <string name="splash_content">不积跬步，无以至千里</string>
+    <string name="calendar">流水日历</string>
+    <string name="setting">设置</string>
 </resources>

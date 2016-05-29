@@ -18,7 +18,7 @@
 
         <activity android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTop"></activity>
 
         <activity android:name=".guidefragment.GuideFragmentActivity"></activity>
         <activity android:name=".ui.StreamActivity"></activity>

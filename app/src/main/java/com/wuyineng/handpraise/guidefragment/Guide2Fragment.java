@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.wuyineng.handpraise.ui.MainActivity;
 import com.wuyineng.handpraise.R;
 import com.wuyineng.handpraise.utils.MyConstants;
@@ -17,7 +15,9 @@ import com.wuyineng.handpraise.utils.SpTool;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by wuyineng on 2016/4/18.
@@ -25,14 +25,14 @@ import java.util.Date;
  */
 public class Guide2Fragment extends BaseGuideFragment{
 
-    @ViewInject(R.id.tv_guide2_currentDay)
-    private TextView mShowCurrentDay;
+    @Bind(R.id.tv_guide2_currentDay)
+    TextView mShowCurrentDay;
 
-    @ViewInject(R.id.bt_item_guide2_skip)
-    private Button mSkipSet;
+    @Bind(R.id.bt_item_guide2_skip)
+    Button mSkipSet;
 
-    @ViewInject(R.id.et_guide2_current_property)
-    private EditText mCurrentProperty;
+    @Bind(R.id.et_guide2_current_property)
+    EditText mCurrentProperty;
 
 
     @Override
@@ -52,9 +52,6 @@ public class Guide2Fragment extends BaseGuideFragment{
         SpTool.putInt(getActivity(), MyConstants.CURRENT_YEAR, year);
         SpTool.putInt(getActivity(), MyConstants.CURRENT_MONTH, month);
         SpTool.putInt(getActivity(), MyConstants.CURRENT_DAY, day);
-
-
-
         super.initData();
     }
 
@@ -87,7 +84,6 @@ public class Guide2Fragment extends BaseGuideFragment{
                 SpTool.putBoolean(getActivity(), MyConstants.IS_SKIP, true);
                 startActivity(intent);
                 getActivity().finish();
-
             }
         });
         super.initEvent();
@@ -98,7 +94,7 @@ public class Guide2Fragment extends BaseGuideFragment{
 
         View root = View.inflate(mGuideFragmentActivity, R.layout.item_guide_2, null);
 
-        ViewUtils.inject(this,root);
+        ButterKnife.bind(this,root);
 
         return root;
     }

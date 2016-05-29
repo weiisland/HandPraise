@@ -30,29 +30,26 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by wuyineng on 2016/4/20.
  * 描述：增加流水的界面
  */
 public class StreamActivity extends BaseActivity implements View.OnTouchListener{
-
-    @ViewInject(R.id.ib_back)
-    private ImageButton mIb_back;
-
-    @ViewInject(R.id.tv_stream_date)
-    private TextView mTv_date;
-
-    @ViewInject(R.id.et_stream_income)
-    private android.widget.EditText mEt_income;
-
-    @ViewInject(R.id.et_stream_pay)
-    private EditText mEt_pay;
-
-    @ViewInject(R.id.et_stream_comment)
-    private EditText mEt_comment;
-
-    @ViewInject(R.id.ib_done)
-    private ImageButton mIb_done;
+    @Bind(R.id.ib_back)
+    ImageButton mIb_back;
+    @Bind(R.id.tv_stream_date)
+    TextView mTv_date;
+    @Bind(R.id.et_stream_income)
+    android.widget.EditText mEt_income;
+    @Bind(R.id.et_stream_pay)
+    EditText mEt_pay;
+    @Bind(R.id.et_stream_comment)
+    EditText mEt_comment;
+    @Bind(R.id.ib_done)
+    ImageButton mIb_done;
 
     private int mYear;
     private int mMonth;
@@ -70,25 +67,16 @@ public class StreamActivity extends BaseActivity implements View.OnTouchListener
         setContentView(R.layout.item_stream_detail);
 
         mDao = new StreamDao(getApplicationContext());
-
         mBean = new Stream();
 
-
-        ViewUtils.inject(this);
-
+        ButterKnife.bind(this);
     }
 
     @Override
     protected void initData() {
-
         mCurrentTime = System.currentTimeMillis();
-
         mSdf = new SimpleDateFormat("yyyy年MM月dd日");
-
         mTv_date.setText(mSdf.format(mCurrentTime));
-
-
-
         mCalendar = Calendar.getInstance();
 
         super.initData();
@@ -100,7 +88,6 @@ public class StreamActivity extends BaseActivity implements View.OnTouchListener
         mEt_income.setOnTouchListener(this);
 
         mEt_pay.setOnTouchListener(this);
-
 
 //      后退返回主页
         mIb_back.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +147,6 @@ public class StreamActivity extends BaseActivity implements View.OnTouchListener
                 String comment = mEt_comment.getText().toString().trim();
                 mBean.setComment(comment);
 
-
                 String date = mTv_date.getText().toString().trim();
 
                 Log.d("isPressed", "onClick: " + date);
@@ -179,6 +165,7 @@ public class StreamActivity extends BaseActivity implements View.OnTouchListener
 //                跳转至主界面
                 Intent intent = new Intent(StreamActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
 
                 Toast.makeText(getApplicationContext(),"数据保存完成",Toast.LENGTH_SHORT).show();
             }
@@ -186,8 +173,6 @@ public class StreamActivity extends BaseActivity implements View.OnTouchListener
 
         super.initEvent();
     }
-
-
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -219,7 +204,6 @@ public class StreamActivity extends BaseActivity implements View.OnTouchListener
             mBean.setComment(comment);
             mDao.add(mBean);
         }*/
-
 
         et_text.setInputType(input_back);
 

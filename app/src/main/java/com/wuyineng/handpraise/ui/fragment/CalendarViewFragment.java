@@ -8,12 +8,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -24,7 +21,6 @@ import com.rey.material.widget.Button;
 import com.wuyineng.handpraise.R;
 import com.wuyineng.handpraise.dao.StreamDao;
 import com.wuyineng.handpraise.domain.Stream;
-import com.wuyineng.handpraise.ui.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,6 +30,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.TimeZone;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by wuyineng on 2016/4/24.
  * 描述：日历显示
@@ -41,18 +40,14 @@ import java.util.TimeZone;
 public class CalendarViewFragment extends BaseFragment{
 
     private static final int FINISH = 1;
-    @ViewInject(R.id.calendarView)
-    private MaterialCalendarView mCalendarView;
-
-    @ViewInject(R.id.bt_calendar_detail)
-    private Button mBt_showData;
-
-
-    @ViewInject(R.id.tv_calendar_click)
-    private TextView mTv_calendar_click;
-
-    @ViewInject(R.id.lv_calendar_item)
-    private ListView mLv_detail;
+    @Bind(R.id.calendarView)
+    MaterialCalendarView mCalendarView;
+    @Bind(R.id.bt_calendar_detail)
+    Button mBt_showData;
+    @Bind(R.id.tv_calendar_click)
+    TextView mTv_calendar_click;
+    @Bind(R.id.lv_calendar_item)
+    ListView mLv_detail;
 
     private StreamDao mDao;
     private List<Stream> mAllData;
@@ -68,7 +63,7 @@ public class CalendarViewFragment extends BaseFragment{
 
         mDao = new StreamDao(getActivity());
 
-        ViewUtils.inject(this, view);
+        ButterKnife.bind(this,view);
         return view;
     }
 
@@ -77,10 +72,7 @@ public class CalendarViewFragment extends BaseFragment{
 
         mAllData = mDao.getAllData();
 
-
         mAdapter = new MyAdapter();
-
-        //mLv_detail.setAdapter(mAdapter);
 
         Calendar cal = Calendar.getInstance();
 //      从数据库取出数据，如果日期有记账的就进行标记
@@ -91,15 +83,12 @@ public class CalendarViewFragment extends BaseFragment{
 //            转化
             CalendarDay day = CalendarDay.from(cal);
             calendarDays.add(day);
-            
         }
 
         mCalendarView.addDecorator(new EventDecorator(Color.RED,calendarDays));
 
         super.initData();
     }
-
-
 
     class MyAdapter extends BaseAdapter{
 
@@ -152,8 +141,6 @@ public class CalendarViewFragment extends BaseFragment{
                     final ViewHolder holder = (ViewHolder) v.getTag();
 
                     if (event.getAction() == MotionEvent.ACTION_DOWN){
-
-
                         mX = event.getX();
 
                     }else if (event.getAction() == MotionEvent.ACTION_UP){
@@ -179,12 +166,9 @@ public class CalendarViewFragment extends BaseFragment{
                     notifyDataSetChanged();
                     viewHolder.delete.setVisibility(View.GONE);
 //                    再调用一遍用于刷新
-
                     mCalendarView.addDecorator(new EventDecorator(Color.RED, calendarDays));
                 }
             });
-
-
             return view;
         }
     }
@@ -192,9 +176,7 @@ public class CalendarViewFragment extends BaseFragment{
 
     class ViewHolder{
         TextView incomeAndPay;
-
         TextView comment;
-
         android.widget.Button delete;
     }
 
@@ -230,7 +212,6 @@ public class CalendarViewFragment extends BaseFragment{
                     Log.d("data_year", "data_year: " + year + "年" +month + "月" + day + "日");
                     Log.d("select_date", "onDateSelected: " + select_year + "年" + select_month + "月" + select_day + "日");
 
-
                     //if (date.getDate() == data_time)//要是用这条语句就判断不出来
 //                    如果选择的日期与数据库中的日期存在相等，就把当天的总的收支情况计算出来
                     if (year == select_year && month == select_month && day == select_day){
@@ -240,8 +221,6 @@ public class CalendarViewFragment extends BaseFragment{
 
                         Log.d("date.getDate()", date.getDate() + "");
                         Log.d("data_time", data_time + "");
-
-
 
                         new Thread(){
                             @Override
@@ -319,7 +298,6 @@ public class CalendarViewFragment extends BaseFragment{
                 mLv_detail.setVisibility(View.VISIBLE);
 
                 mLv_detail.setAdapter(mAdapter);
-
             }
         });
     }

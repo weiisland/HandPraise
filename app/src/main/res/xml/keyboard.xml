@@ -36,7 +36,7 @@
         <Key android:codes="5789" android:keyLabel="清空" android:keyWidth="25%p" android:keyEdgeFlags="left"/>
         <Key android:codes="48" android:keyLabel="0" android:keyWidth="25%p"/>
         <Key android:codes="46" android:keyLabel="." android:keyWidth="25%p" />
-        <Key android:codes="5777" android:keyLabel="OK" android:keyWidth="25%p" android:keyEdgeFlags="right"/>
+        <Key android:codes="5777" android:keyLabel="" android:keyWidth="25%p" android:keyEdgeFlags="right"/>
     </Row>
 
 

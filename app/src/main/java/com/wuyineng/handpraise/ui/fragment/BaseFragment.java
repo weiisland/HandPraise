@@ -41,17 +41,12 @@ public abstract class BaseFragment extends Fragment {
         initEvent();
     }
 
-    protected void initEvent() {
+    protected void initEvent() {}
 
-    }
-
-    protected void initData() {
-
-    }
+    protected void initData() {}
 
     @Override
     public void onDestroy() {
-
         super.onDestroy();
     }
 }
