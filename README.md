@@ -8,9 +8,10 @@
 
 **样图**
 -
+![handpraise_home.JPG](http://upload-images.jianshu.io/upload_images/1739458-2fb9be382a805ae3.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![handpraise_calendar.JPG](http://upload-images.jianshu.io/upload_images/1739458-c2d06d9acd457bf9.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![handpraise_home.JPG](http://upload-images.jianshu.io/upload_images/1739458-2fb9be382a805ae3.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![handpraise_add.JPG](http://upload-images.jianshu.io/upload_images/1739458-aa1359bcf64f8d8d.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **使用的开源项目**
