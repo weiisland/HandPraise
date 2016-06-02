@@ -15,6 +15,7 @@
 ![handpraise_add.JPG](http://upload-images.jianshu.io/upload_images/1739458-aa1359bcf64f8d8d.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **使用的开源项目**
+-
 
 [NumberProgressBar](https://github.com/daimajia/NumberProgressBar)
 
